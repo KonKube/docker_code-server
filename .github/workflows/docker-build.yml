@@ -27,4 +27,5 @@ jobs:
       -
         name: Build
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t konkube/code-server:latest --push .
+          APPLICATION=`echo $GITHUB_REPOSITORY | grep -oP '(?<=KonKube\/docker_).*'`
+          docker buildx build --platform linux/amd64,linux/arm64 -t konkube/$APPLICATION:latest -t konkube/$APPLICATION:$(date +%Y%m) --push .
