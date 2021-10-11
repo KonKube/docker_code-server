@@ -87,7 +87,7 @@ WORKDIR /home/${USER}
 ## Get Linux Homebrew
 RUN mkdir ~/.linuxbrew && \
     cd ~/.linuxbrew && \
-    git clone --depth 1 --branch 3.2.15 https://github.com/Homebrew/brew.git && \
+    git clone --depth 1 --branch ${HOMEBREW_VERSION} https://github.com/Homebrew/brew.git && \
     mv brew Homebrew
 
 ## Setup directory structure and homebrew
