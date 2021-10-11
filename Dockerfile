@@ -100,32 +100,32 @@ RUN mkdir -p \
       .linuxbrew/share \
       .linuxbrew/var/homebrew/linked \
       .linuxbrew/Cellar && \
-    ln -s ../Homebrew/bin/brew .linuxbrew/bin/brew && \
-    git -C .linuxbrew/Homebrew remote set-url origin https://github.com/Homebrew/brew && \
-    git -C .linuxbrew/Homebrew fetch origin && \
-    HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1 brew tap homebrew/core && \
-    brew install-bundler-gems && \
-    brew cleanup && \
-    { git -C .linuxbrew/Homebrew config --unset gc.auto; true; } && \
-    { git -C .linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } && \
-    rm -rf .cache
+    ln -s ../Homebrew/bin/brew .linuxbrew/bin/brew
+    # git -C .linuxbrew/Homebrew remote set-url origin https://github.com/Homebrew/brew && \
+    # git -C .linuxbrew/Homebrew fetch origin && \
+    # HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1 brew tap homebrew/core && \
+    # brew install-bundler-gems && \
+    # brew cleanup && \
+    # { git -C .linuxbrew/Homebrew config --unset gc.auto; true; } && \
+    # { git -C .linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } && \
+    # rm -rf .cache
 
-## Install Dev Tools
-RUN brew install gcc && \
-    brew install zsh && \
-    brew install romkatv/powerlevel10k/powerlevel10k && \
-    brew install xz && \
-    brew install kubectl && \
-    brew install kubectx && \
-    brew tap boz/repo && \
-    brew install boz/repo/kail && \
-    brew install fluxcd/tap/flux && \
-    brew install pv && \
-    brew install helm && \
-    brew install kubeseal && \
-    brew install docker && \
-    brew cleanup && \
-    rm -rf .cache
+# ## Install Dev Tools
+# RUN brew install gcc && \
+#     brew install zsh && \
+#     brew install romkatv/powerlevel10k/powerlevel10k && \
+#     brew install xz && \
+#     brew install kubectl && \
+#     brew install kubectx && \
+#     brew tap boz/repo && \
+#     brew install boz/repo/kail && \
+#     brew install fluxcd/tap/flux && \
+#     brew install pv && \
+#     brew install helm && \
+#     brew install kubeseal && \
+#     brew install docker && \
+#     brew cleanup && \
+#     rm -rf .cache
 
 # ### Make zsh default shell
 # # RUN chsh -s $(which zsh colorize)
