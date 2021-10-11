@@ -9,7 +9,7 @@ ARG GID=1000
 
 ## Set Software versions and installation options
 ARG ARG DEBIAN_FRONTEND=noninteractive
-ARG HOMEBREW_VERSION="3.2.15"
+ARG HOMEBREW_VERSION="3.2.16"
 ARG CODESERVER_VERSION="3.12.0"
 ARG FIXUID_VERSION="0.5.1"
 
@@ -36,7 +36,8 @@ RUN apt-get update && \
       patch \
       sudo \
       uuid-runtime \
-      tzdata
+      tzdata 
+#      ruby
 
 ## Install dependencies for Code-Server
 RUN apt-get update && \
