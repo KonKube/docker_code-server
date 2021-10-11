@@ -36,8 +36,8 @@ RUN apt-get update && \
       patch \
       sudo \
       uuid-runtime \
-      tzdata 
-#      ruby
+      tzdata \
+      rbenv
 
 ## Install dependencies for Code-Server
 RUN apt-get update && \
@@ -84,6 +84,14 @@ ENV USER=${USER}
 ENV PATH="/home/${USER}/.linuxbrew/bin:/home/${USER}/.linuxbrew/sbin:${PATH}"
 WORKDIR /home/${USER}
 
+## Install rbenv build
+RUN mkdir -p "$(rbenv root)"/plugins && \
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+
+## Init rbenv
+RUN rbenv install 2.6.8
+#rbenv init
+
 ## Get Linux Homebrew
 RUN mkdir ~/.linuxbrew && \
     cd ~/.linuxbrew && \
@@ -101,9 +109,9 @@ RUN mkdir -p \
       .linuxbrew/share \
       .linuxbrew/var/homebrew/linked \
       .linuxbrew/Cellar && \
-    ln -s ../Homebrew/bin/brew .linuxbrew/bin/brew
-    # git -C .linuxbrew/Homebrew remote set-url origin https://github.com/Homebrew/brew && \
-    # git -C .linuxbrew/Homebrew fetch origin && \
+    ln -s ../Homebrew/bin/brew .linuxbrew/bin/brew  && \
+    git -C .linuxbrew/Homebrew remote set-url origin https://github.com/Homebrew/brew && \
+    git -C .linuxbrew/Homebrew fetch origin
     # HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1 brew tap homebrew/core && \
     # brew install-bundler-gems && \
     # brew cleanup && \
