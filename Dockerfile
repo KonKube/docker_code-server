@@ -37,7 +37,9 @@ RUN apt-get update && \
       sudo \
       uuid-runtime \
       tzdata \
-      rbenv
+      rbenv \
+      libssl-dev \
+      libreadline-dev
 
 ## Install dependencies for Code-Server
 RUN apt-get update && \
