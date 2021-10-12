@@ -1,4 +1,4 @@
-ARG UBUNTU_VERSION=20.04
+ARG UBUNTU_VERSION="20.04"
 
 FROM ubuntu:"${UBUNTU_VERSION}"
 
@@ -8,10 +8,11 @@ ARG UID=1000
 ARG GID=1000
 
 ## Set Software versions and installation options
-ARG ARG DEBIAN_FRONTEND=noninteractive
+ARG ARG DEBIAN_FRONTEND="noninteractive"
 ARG HOMEBREW_VERSION="3.2.16"
 ARG CODESERVER_VERSION="3.12.0"
 ARG FIXUID_VERSION="0.5.1"
+ARG RUBY_VERSION="2.6.3"
 
 ## Install dependencies for Homebrew
 RUN apt-get update && \
@@ -90,8 +91,8 @@ WORKDIR /home/${USER}
 RUN mkdir -p "$(rbenv root)"/plugins && \
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 
-## Init rbenv
-RUN rbenv install 2.6.8
+## Install Ruby
+RUN rbenv install ${RUBY_VERSION}
 #rbenv init
 
 ## Get Linux Homebrew
@@ -135,6 +136,7 @@ RUN mkdir -p \
 #     brew install helm && \
 #     brew install kubeseal && \
 #     brew install docker && \
+#     brew install node && \
 #     brew cleanup && \
 #     rm -rf .cache
 
