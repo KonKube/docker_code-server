@@ -92,7 +92,8 @@ RUN mkdir -p "$(rbenv root)"/plugins && \
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 
 ## Install Ruby
-RUN rbenv install ${RUBY_VERSION}
+RUN rbenv install ${RUBY_VERSION} && \
+    rbenv global ${RUBY_VERSION}
 #rbenv init
 
 ## Get Linux Homebrew
