@@ -18,4 +18,5 @@ if [ "${DOCKER_USER-}" ]; then
   fi
 fi
 
-dumb-init /usr/bin/code-server --disable-telemetry "$@"
+#dumb-init /usr/bin/code-server --disable-telemetry "$@"
+dumb-init /usr/bin/code-server "$@"
