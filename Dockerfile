@@ -84,6 +84,7 @@ RUN ARCH="$(dpkg --print-architecture)" && \
 ## Switch to User and set configuration
 USER ${USER}
 ENV USER=${USER}
+ENV RBENV_VERSION=${RUBY_VERSION}
 ENV PATH="/home/${USER}/.linuxbrew/bin:/home/${USER}/.linuxbrew/sbin:/home/${USER}/.rbenv/bin:/home/${USER}/.rbenv/shims:${PATH}"
 WORKDIR /home/${USER}
 
@@ -92,8 +93,7 @@ RUN mkdir -p "$(rbenv root)"/plugins && \
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 
 ## Install Ruby
-RUN rbenv install ${RUBY_VERSION} && \
-    rbenv global ${RUBY_VERSION}
+RUN rbenv install ${RUBY_VERSION}
 #rbenv init
 
 ## Get Linux Homebrew
@@ -124,22 +124,22 @@ RUN mkdir -p \
     rm -rf .cache
 
 ## Install Dev Tools
-RUN brew install gcc && \
-    brew install zsh && \
-    brew install romkatv/powerlevel10k/powerlevel10k && \
-    brew install xz && \
-    brew install kubectl && \
-    brew install kubectx && \
-    brew tap boz/repo && \
-    brew install boz/repo/kail && \
-    brew install fluxcd/tap/flux && \
-    brew install pv && \
-    brew install helm && \
-    brew install kubeseal && \
-    brew install docker && \
-    brew install node && \
-    brew cleanup && \
-    rm -rf .cache
+# RUN brew install gcc && \
+#     brew install zsh && \
+#     brew install romkatv/powerlevel10k/powerlevel10k && \
+#     brew install xz && \
+#     brew install kubectl && \
+#     brew install kubectx && \
+#     brew tap boz/repo && \
+#     brew install boz/repo/kail && \
+#     brew install fluxcd/tap/flux && \
+#     brew install pv && \
+#     brew install helm && \
+#     brew install kubeseal && \
+#     brew install docker && \
+#     brew install node && \
+#     brew cleanup && \
+#     rm -rf .cache
 
 # ### Make zsh default shell
 # # RUN chsh -s $(which zsh colorize)
